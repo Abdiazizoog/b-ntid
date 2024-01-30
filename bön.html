@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Böntider.se</title>
+    <link rel="stylesheet" href="bön.css" />
+  </head>
+  <body>
+    <header class="header">
+      <img id="logga" src="bön-img.jpg" alt="logga-bön" />
+      <h1>Bönetider för Göteborg</h1>
+      <label for="monthselect">välj en månad 2023</label>
+      <select id="monthSelect">
+        <option value="1">Januari</option>
+        <option value="2">Februari</option>
+        <option value="3">Mars</option>
+        <option value="4">April</option>
+        <option value="5">Maj</option>
+        <option value="6">Juni</option>
+        <option value="7">Juli</option>
+        <option value="8">Augusti</option>
+        <option value="9">septemper</option>
+        <option value="10">oktober</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+
+      <ul>
+        <li><a href="index.html">Hem</a></li>
+        <li><a href="https://islam.nu/om-islam/">Om islam</a></li>
+        <li><a href="https://islam.nu/islampodden/">islampodden</a></li>
+        <li><a href="https://islam.nu/bonetider/">Böntider</a></li>
+        <li><a href="https://islam.nu/forelasningar/ ">Föreläsningar</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <div id="pray"></div>
+      <div class="bön">
+        Göteborg
+        <div>Fajr 05:25</div>
+        <div>Dhuhr 11:56</div>
+        <div>Asr 13:44</div>
+        <div>Maghrib 16:10</div>
+        <div>Ishâ 18:18</div>
+      </div>
+
+      <div class="tablebön"></div>
+
+      <table class="table-bön">
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>fajr</th>
+            <th>Duhur</th>
+            <th>Asr</th>
+            <th>Maghrib</th>
+            <th>Ishâ</th>
+          </tr>
+        </thead>
+        <tbody id="pray-tid"></tbody>
+      </table>
+    </main>
+
+    <footer>
+      <nav id="nav">
+        <img id="logga" src="bön-img.jpg" alt="logga-bön" />
+        <ul id="link">
+          <li><a href="index.html">Hem</a></li>
+          <li><a href="https://islam.nu/om-islam/">Om islam</a></li>
+          <li><a href="https://islam.nu/islampodden/">islampodden</a></li>
+          <li><a href="https://islam.nu/bonetider/">Böntider</a></li>
+          <li><a href="https://islam.nu/forelasningar/ ">Föreläsningar</a></li>
+          <h2 id="h2">Böntider © 2023 Islam.nu</h2>
+        </ul>
+      </nav>
+    </footer>
+
+    <script>
+      const allmonth = document.querySelector("#monthSelect");
+      allmonth.addEventListener("change", () => {
+        let selectedMonth = allmonth.value;
+        praytid(selectedMonth);
+      });
+
+      function praytid(selectedMonth) {
+        console.log("month: " + selectedMonth);
+
+        // Rensa innehållet i tidigare bönstider innan du lägger till nya rader
+        let pray = document.querySelector("#pray-tid");
+        pray.innerHTML = "";
+
+        fetch(
+          "https://api.aladhan.com/v1/calendarByCity/2023/" +
+            selectedMonth +
+            "?city=Sweden&country=Gothenburg&method=2"
+        )
+          .then((response) => response.json())
+          .then((resultat) => {
+            console.log(resultat);
+
+            for (let i = 0; i < resultat.data.length; i++) {
+              let row = "";
+              let praytime = resultat.data[i];
+              row += "<tr>";
+              row += "<td>" + praytime.date.readable + "</td>";
+
+              row +=
+                "<td>" +
+                praytime.timings.Fajr.split(/ \(CE[DS]T\)/)[0] +
+                "</td>";
+              row +=
+                "<td>" +
+                praytime.timings.Dhuhr.split(/ \(CE[DS]T\)/)[0] +
+                "</td>";
+              row +=
+                "<td>" +
+                praytime.timings.Asr.split(/ \(CE[DS]T\)/)[0] +
+                "</td>";
+              row +=
+                "<td>" +
+                praytime.timings.Maghrib.split(/ \(CE[DS]T\)/)[0] +
+                "</td>";
+              row +=
+                "<td>" +
+                praytime.timings.Isha.split(/ \(CE[DS]T\)/)[0] +
+                "</td>";
+              row += "</tr>";
+              pray.innerHTML += row;
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

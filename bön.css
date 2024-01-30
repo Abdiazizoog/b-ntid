@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color:rgba(0,0,0,.05);
+    font-family: lato-light, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    
+}
+
+#table-tid{
+    justify-content: space-around;
+}
+
+.bön{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 20px;
+    background-color: green; 
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0,0,0,.05);
+}
+#logga{
+    border-radius: 50%;
+    width: 150px;
+    max-width: 100%;
+    height: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 70px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+   
+}
+
+ul {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 15px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #333;    
+    font-weight: 400px;
+}
+
+h1{
+    font-size: 30px;
+    align-items: center;
+    margin-top: 50px;  
+}
+
+nav {
+    justify-content: space-around;
+    background-color: green;
+    padding: 0 0;
+      
+}
+
+#monthSelect{
+    position: absolute;
+    height: 50px;
+    width: 150px;
+    margin: 20px;
+    
+   
+}
+
+#visabutton{
+    position: absolute;
+    height: 50px;
+    width: 10px;
+    margin-left: 50px;  
+}
+
+
+#link{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+#link li{
+    display: inline-block;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+a {
+        text-decoration: none; 
+        color: #0077cc; 
+        font-size: 20px;
+        transition: color 0.2s; 
+  }
+
+a:hover {
+    color: #ff6600; 
+  }
+
+  a:visited {
+    color: #551a8b;
+  }
+
+#h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+
+.table-bön{
+  width: 100%; 
+  border-collapse: collapse; 
+  text-align: center;
+}
+
+.table-bön thead{
+    background-color: #f2f2f2;
+}
+
+    th{
+    background-color: #333; 
+    color: white; 
+    padding: 10px
+ }
+
+
+ td {
+    padding: 8px; 
+    border: 1px solid #ccc; 
+  }
+
+  td:hover {
+    background-color: #e0e0e0; 
+  }
